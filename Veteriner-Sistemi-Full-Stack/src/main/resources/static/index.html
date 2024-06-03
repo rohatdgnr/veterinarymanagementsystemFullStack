@@ -9,63 +9,164 @@
 <body>
 <div id="app">
     <h1>Veterinary Management System</h1>
-    <div>
-        <h2>Customers</h2>
-        <input type="text" id="customerName" placeholder="Name">
-        <input type="text" id="customerEmail" placeholder="Email">
-        <input type="text" id="customerPhone" placeholder="Phone">
-        <input type="text" id="customerCity" placeholder="City">
-        <input type="text" id="customerAddress" placeholder="Address">
-        <button id="addCustomerBtn">Add </button>
-        <button id="updateCustomerBtn">Update </button>
-        <button id="deleteCustomerBtn">Delete </button>
-        <ul id="customerList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#customerPanel">Customers</h2>
+        <div id="customerPanel" class="panel">
+            <input type="text" id="customerName" placeholder="Name">
+            <input type="text" id="customerEmail" placeholder="Email">
+            <input type="text" id="customerPhone" placeholder="Phone">
+            <input type="text" id="customerAddress" placeholder="Address">
+            <select id="customerCity">
+                <option value="" disabled selected>Select City</option>
+                <option value="Adana">Adana</option>
+                <option value="Adıyaman">Adıyaman</option>
+                <option value="Afyonkarahisar">Afyonkarahisar</option>
+                <option value="Ağrı">Ağrı</option>
+                <option value="Amasya">Amasya</option>
+                <option value="Ankara">Ankara</option>
+                <option value="Antalya">Antalya</option>
+                <option value="Artvin">Artvin</option>
+                <option value="Aydın">Aydın</option>
+                <option value="Balıkesir">Balıkesir</option>
+                <option value="Bilecik">Bilecik</option>
+                <option value="Bingöl">Bingöl</option>
+                <option value="Bitlis">Bitlis</option>
+                <option value="Bolu">Bolu</option>
+                <option value="Burdur">Burdur</option>
+                <option value="Bursa">Bursa</option>
+                <option value="Çanakkale">Çanakkale</option>
+                <option value="Çankırı">Çankırı</option>
+                <option value="Çorum">Çorum</option>
+                <option value="Denizli">Denizli</option>
+                <option value="Diyarbakır">Diyarbakır</option>
+                <option value="Edirne">Edirne</option>
+                <option value="Elazığ">Elazığ</option>
+                <option value="Erzincan">Erzincan</option>
+                <option value="Erzurum">Erzurum</option>
+                <option value="Eskişehir">Eskişehir</option>
+                <option value="Gaziantep">Gaziantep</option>
+                <option value="Giresun">Giresun</option>
+                <option value="Gümüşhane">Gümüşhane</option>
+                <option value="Hakkâri">Hakkâri</option>
+                <option value="Hatay">Hatay</option>
+                <option value="Isparta">Isparta</option>
+                <option value="Mersin">Mersin</option>
+                <option value="İstanbul">İstanbul</option>
+                <option value="İzmir">İzmir</option>
+                <option value="Kars">Kars</option>
+                <option value="Kastamonu">Kastamonu</option>
+                <option value="Kayseri">Kayseri</option>
+                <option value="Kırklareli">Kırklareli</option>
+                <option value="Kırşehir">Kırşehir</option>
+                <option value="Kocaeli">Kocaeli</option>
+                <option value="Konya">Konya</option>
+                <option value="Kütahya">Kütahya</option>
+                <option value="Malatya">Malatya</option>
+                <option value="Manisa">Manisa</option>
+                <option value="Kahramanmaraş">Kahramanmaraş</option>
+                <option value="Mardin">Mardin</option>
+                <option value="Muğla">Muğla</option>
+                <option value="Muş">Muş</option>
+                <option value="Nevşehir">Nevşehir</option>
+                <option value="Niğde">Niğde</option>
+                <option value="Ordu">Ordu</option>
+                <option value="Rize">Rize</option>
+                <option value="Sakarya">Sakarya</option>
+                <option value="Samsun">Samsun</option>
+                <option value="Siirt">Siirt</option>
+                <option value="Sinop">Sinop</option>
+                <option value="Sivas">Sivas</option>
+                <option value="Tekirdağ">Tekirdağ</option>
+                <option value="Tokat">Tokat</option>
+                <option value="Trabzon">Trabzon</option>
+                <option value="Tunceli">Tunceli</option>
+                <option value="Şanlıurfa">Şanlıurfa</option>
+                <option value="Uşak">Uşak</option>
+                <option value="Van">Van</option>
+                <option value="Yozgat">Yozgat</option>
+                <option value="Zonguldak">Zonguldak</option>
+                <option value="Aksaray">Aksaray</option>
+                <option value="Bayburt">Bayburt</option>
+                <option value="Karaman">Karaman</option>
+                <option value="Kırıkkale">Kırıkkale</option>
+                <option value="Batman">Batman</option>
+                <option value="Şırnak">Şırnak</option>
+                <option value="Bartın">Bartın</option>
+                <option value="Ardahan">Ardahan</option>
+                <option value="Iğdır">Iğdır</option>
+                <option value="Yalova">Yalova</option>
+                <option value="Karabük">Karabük</option>
+                <option value="Kilis">Kilis</option>
+                <option value="Osmaniye">Osmaniye</option>
+                <option value="Düzce">Düzce</option>
+            </select>
+            <button id="addCustomerBtn">Add</button>
+            <button id="updateCustomerBtn">Update</button>
+            <button id="deleteCustomerBtn">Delete</button>
+            <ul id="customerList"></ul>
+        </div>
     </div>
-    <div>
-        <h2>Animals</h2>
-        <input type="text" id="animalName" placeholder="Name">
-        <input type="text" id="animalType" placeholder="Type">
-        <input type="text" id="animalOwner" placeholder="Owner ID">
-        <button id="addAnimalBtn">Add </button>
-        <button id="updateAnimalBtn">Update </button>
-        <button id="deleteAnimalBtn">Delete </button>
-        <ul id="animalList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#animalPanel">Animals</h2>
+        <div id="animalPanel" class="panel">
+            <input type="text" id="animalName" placeholder="Name">
+            <input type="text" id="animalType" placeholder="Type">
+            <input type="text" id="animalOwner" placeholder="Owner ID">
+            <button id="addAnimalBtn">Add</button>
+            <button id="updateAnimalBtn">Update</button>
+            <button id="deleteAnimalBtn">Delete</button>
+            <ul id="animalList"></ul>
+        </div>
     </div>
-    <div>
-        <h2>Vaccines</h2>
-        <input type="text" id="vaccineName" placeholder="Name">
-        <input type="text" id="vaccineAnimal" placeholder="Animal ID">
-        <button id="addVaccineBtn">Add </button>
-        <button id="updateVaccineBtn">Update </button>
-        <button id="deleteVaccineBtn">Delete </button>
-        <ul id="vaccineList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#vaccinePanel">Vaccines</h2>
+        <div id="vaccinePanel" class="panel">
+            <input type="text" id="vaccineName" placeholder="Name">
+            <input type="text" id="vaccineAnimal" placeholder="Animal ID">
+            <button id="addVaccineBtn">Add</button>
+            <button id="updateVaccineBtn">Update</button>
+            <button id="deleteVaccineBtn">Delete</button>
+            <ul id="vaccineList"></ul>
+        </div>
     </div>
-    <div>
-        <h2>Doctors</h2>
-        <input type="text" id="doctorName" placeholder="Name">
-        <button id="addDoctorBtn">Add </button>
-        <button id="updateDoctorBtn">Update </button>
-        <button id="deleteDoctorBtn">Delete </button>
-        <ul id="doctorList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#doctorPanel">Doctors</h2>
+        <div id="doctorPanel" class="panel">
+            <input type="text" id="doctorName" placeholder="Name">
+            <button id="addDoctorBtn">Add</button>
+            <button id="updateDoctorBtn">Update</button>
+            <button id="deleteDoctorBtn">Delete</button>
+            <ul id="doctorList"></ul>
+        </div>
     </div>
-    <div>
-        <h2>Available Dates</h2>
-        <input type="text" id="availableDate" placeholder="Date">
-        <input type="text" id="availableDoctor" placeholder="Doctor ID">
-        <button id="addAvailableDateBtn">Add </button>
-        <button id="updateAvailableDateBtn">Update </button>
-        <button id="deleteAvailableDateBtn">Delete </button>
-        <ul id="availableDateList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#availableDatePanel">Available Dates</h2>
+        <div id="availableDatePanel" class="panel">
+            <input type="text" id="availableDate" placeholder="Date">
+            <input type="text" id="availableDoctor" placeholder="Doctor ID">
+            <button id="addAvailableDateBtn">Add</button>
+            <button id="updateAvailableDateBtn">Update</button>
+            <button id="deleteAvailableDateBtn">Delete</button>
+            <ul id="availableDateList"></ul>
+        </div>
     </div>
-    <div>
-        <h2>Appointments</h2>
-        <input type="text" id="appointmentDate" placeholder="Date">
-        <input type="text" id="appointmentAnimal" placeholder="Animal ID">
-        <input type="text" id="appointmentDoctor" placeholder="Doctor ID">
-        <button id="addAppointmentBtn">Add </button>
-        <button id="updateAppointmentBtn">Update </button>
-        <button id="deleteAppointmentBtn">Delete </button>
-        <ul id="appointmentList"></ul>
+
+    <div class="section">
+        <h2 class="toggle" data-target="#appointmentPanel">Appointments</h2>
+        <div id="appointmentPanel" class="panel">
+            <input type="text" id="appointmentDate" placeholder="Date">
+            <input type="text" id="appointmentAnimal" placeholder="Animal ID">
+            <input type="text" id="appointmentDoctor" placeholder="Doctor ID">
+            <button id="addAppointmentBtn">Add</button>
+            <button id="updateAppointmentBtn">Update</button>
+            <button id="deleteAppointmentBtn">Delete</button>
+            <ul id="appointmentList"></ul>
+        </div>
     </div>
 </div>
 <script src="script.js"></script>

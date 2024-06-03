@@ -1,6 +1,18 @@
 const API_URL = 'http://localhost:8080/api/v1';
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Toggle panel visibility
+    document.querySelectorAll('.toggle').forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const target = document.querySelector(toggle.getAttribute('data-target'));
+            if (target.style.display === 'none' || target.style.display === '') {
+                target.style.display = 'block';
+            } else {
+                target.style.display = 'none';
+            }
+        });
+    });
+
     const customerList = document.getElementById('customerList');
     const animalList = document.getElementById('animalList');
     const vaccineList = document.getElementById('vaccineList');
@@ -18,25 +30,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteCustomerBtn = document.getElementById('deleteCustomerBtn');
 
     const animalName = document.getElementById('animalName');
-    const animalType = document.getElementById('animalType');
+    const animalSpecies = document.getElementById('animalSpecies');
+    const animalBreed = document.getElementById('animalBreed');
+    const animalColour = document.getElementById('animalColour');
+    const animalDOB = document.getElementById('animalDOB');
+    const animalGender = document.getElementById('animalGender');
     const animalOwner = document.getElementById('animalOwner');
     const addAnimalBtn = document.getElementById('addAnimalBtn');
-
-        const updateAnimalBtn = document.getElementById('updateAnimalBtn');
-        const deleteAnimalBtn = document.getElementById('deleteAnimalBtn');
+    const updateAnimalBtn = document.getElementById('updateAnimalBtn');
+    const deleteAnimalBtn = document.getElementById('deleteAnimalBtn');
 
     const vaccineName = document.getElementById('vaccineName');
+    const vaccineCode = document.getElementById('vaccineCode');
+    const vaccineProtectionStart = document.getElementById('vaccineProtectionStart');
+    const vaccineProtectionEnd = document.getElementById('vaccineProtectionEnd');
     const vaccineAnimal = document.getElementById('vaccineAnimal');
     const addVaccineBtn = document.getElementById('addVaccineBtn');
-
-        const updateVaccineBtn = document.getElementById('updateVaccineBtn');
-        const deleteVaccineBtn = document.getElementById('deleteVaccineBtn');
+    const updateVaccineBtn = document.getElementById('updateVaccineBtn');
+    const deleteVaccineBtn = document.getElementById('deleteVaccineBtn');
 
     const doctorName = document.getElementById('doctorName');
+    const doctorPhone = document.getElementById('doctorPhone');
+    const doctorEmail = document.getElementById('doctorEmail');
+    const doctorAddress = document.getElementById('doctorAddress');
+    const doctorCity = document.getElementById('doctorCity');
     const addDoctorBtn = document.getElementById('addDoctorBtn');
-
-        const updateDoctorBtn = document.getElementById('updateDoctorBtn');
-        const deleteDoctorBtn = document.getElementById('deleteDoctorBtn');
+    const updateDoctorBtn = document.getElementById('updateDoctorBtn');
+    const deleteDoctorBtn = document.getElementById('deleteDoctorBtn');
 
     const availableDate = document.getElementById('availableDate');
     const availableDoctor = document.getElementById('availableDoctor');
@@ -84,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animals.forEach(animal => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${animal.name} (${animal.type})
+                ${animal.name} (${animal.species})
                 <button class="update" data-id="${animal.id}">Update</button>
                 <button class="delete" data-id="${animal.id}">Delete</button>
             `;
@@ -100,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
         vaccines.forEach(vaccine => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${vaccine.name} (Animal ID: ${vaccine.animalId})
+                ${vaccine.name} (Animal ID: ${vaccine.animal.id})
                 <button class="update" data-id="${vaccine.id}">Update</button>
                 <button class="delete" data-id="${vaccine.id}">Delete</button>
             `;
@@ -116,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
         doctors.forEach(doctor => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${doctor.name}
+                ${doctor.name} (${doctor.email})
                 <button class="update" data-id="${doctor.id}">Update</button>
                 <button class="delete" data-id="${doctor.id}">Delete</button>
             `;
@@ -132,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         availableDates.forEach(availableDate => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${availableDate.date} (Doctor ID: ${availableDate.doctorId})
+                ${availableDate.availableDate} (Doctor ID: ${availableDate.doctor.id})
                 <button class="update" data-id="${availableDate.id}">Update</button>
                 <button class="delete" data-id="${availableDate.id}">Delete</button>
             `;
@@ -148,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
         appointments.forEach(appointment => {
             const li = document.createElement('li');
             li.innerHTML = `
-                ${appointment.date} (Animal ID: ${appointment.animalId}, Doctor ID: ${appointment.doctorId})
+                ${appointment.appointmentDateTime} (Animal ID: ${appointment.animal.id}, Doctor ID: ${appointment.doctor.id})
                 <button class="update" data-id="${appointment.id}">Update</button>
                 <button class="delete" data-id="${appointment.id}">Delete</button>
             `;
@@ -186,37 +206,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    addCustomerBtn.addEventListener('click', async () => {
-        const name = customerName.value;
-        const email = customerEmail.value;
-        if (name && email) {
-            await fetch(`${API_URL}/customers`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name, email })
-            });
-            customerName.value = '';
-            customerEmail.value = '';
-            fetchAndDisplayCustomers();
-        }
-    });
+   addCustomerBtn.addEventListener('click', async () => {
+       const name = customerName.value;
+       const email = customerEmail.value;
+       const phone = customerPhone.value;
+       const address = customerAddress.value;
+       const city = customerCity.value;
+       if (name && email && phone && address && city) {
+           await fetch(`${API_URL}/customers`, {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({ name, email, phone, address, city })
+           });
+           customerName.value = '';
+           customerEmail.value = '';
+           customerPhone.value = '';
+           customerAddress.value = '';
+           customerCity.value = '';
+           fetchAndDisplayCustomers();
+       }
+   });
 
     addAnimalBtn.addEventListener('click', async () => {
         const name = animalName.value;
-        const type = animalType.value;
+        const species = animalSpecies.value;
+        const breed = animalBreed.value;
+        const colour = animalColour.value;
+        const dateOfBirth = animalDOB.value;
+        const gender = animalGender.value;
         const ownerId = animalOwner.value;
-        if (name && type && ownerId) {
+        if (name && species && breed && colour && dateOfBirth && gender && ownerId) {
             await fetch(`${API_URL}/animals`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, type, ownerId })
+                body: JSON.stringify({ name, species, breed, colour, dateOfBirth, gender, owner: { id: ownerId } })
             });
             animalName.value = '';
-            animalType.value = '';
+            animalSpecies.value = '';
+            animalBreed.value = '';
+            animalColour.value = '';
+            animalDOB.value = '';
+            animalGender.value = '';
             animalOwner.value = '';
             fetchAndDisplayAnimals();
         }
@@ -224,16 +258,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addVaccineBtn.addEventListener('click', async () => {
         const name = vaccineName.value;
+        const code = vaccineCode.value;
+        const protectionStartDate = vaccineProtectionStart.value;
+        const protectionEndDate = vaccineProtectionEnd.value;
         const animalId = vaccineAnimal.value;
-        if (name && animalId) {
+        if (name && code && protectionStartDate && protectionEndDate && animalId) {
             await fetch(`${API_URL}/vaccines`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, animalId })
+                body: JSON.stringify({ name, code, protectionStartDate, protectionEndDate, animal: { id: animalId } })
             });
             vaccineName.value = '';
+            vaccineCode.value = '';
+            vaccineProtectionStart.value = '';
+            vaccineProtectionEnd.value = '';
             vaccineAnimal.value = '';
             fetchAndDisplayVaccines();
         }
@@ -241,15 +281,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addDoctorBtn.addEventListener('click', async () => {
         const name = doctorName.value;
-        if (name) {
+        const phone = doctorPhone.value;
+        const email = doctorEmail.value;
+        const address = doctorAddress.value;
+        const city = doctorCity.value;
+        if (name && phone && email && address && city) {
             await fetch(`${API_URL}/doctors`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name })
+                body: JSON.stringify({ name, phone, email, address, city })
             });
             doctorName.value = '';
+            doctorPhone.value = '';
+            doctorEmail.value = '';
+            doctorAddress.value = '';
+            doctorCity.value = '';
             fetchAndDisplayDoctors();
         }
     });
@@ -263,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ date, doctorId })
+                body: JSON.stringify({ availableDate: date, doctor: { id: doctorId } })
             });
             availableDate.value = '';
             availableDoctor.value = '';
@@ -281,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ date, animalId, doctorId })
+                body: JSON.stringify({ appointmentDateTime: date, animal: { id: animalId }, doctor: { id: doctorId } })
             });
             appointmentDate.value = '';
             appointmentAnimal.value = '';

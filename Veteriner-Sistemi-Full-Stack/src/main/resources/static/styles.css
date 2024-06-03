@@ -10,7 +10,7 @@ body {
 }
 
 #app {
-    background: rgba(255, 255, 255, 0.8); /* Beyaz arka plan, şeffaflık eklemek için RGBA kullanılıyor */
+    background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -19,7 +19,7 @@ body {
     margin: 20px;
 }
 
-input {
+input, select {
     display: block;
     width: calc(100% - 22px);
     padding: 10px;
@@ -58,4 +58,21 @@ li {
 
 button.update, button.delete {
     margin-left: 10px;
+}
+
+.panel {
+    display: none;
+}
+
+.section {
+    margin-bottom: 20px;
+}
+
+.toggle {
+    cursor: pointer;
+    color: #007BFF;
+}
+
+.toggle:hover {
+    text-decoration: underline;
 }
