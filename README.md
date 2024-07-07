@@ -15,6 +15,8 @@
 - Spring Boot 
 - PostgresSQL
 - Swagger
+- Docker
+- HTML,CSS,JavaScript
 
 # Özellikler 
 - Veteriner Doktorları Yönetimi: Veteriner doktorları ekleyebilme, güncelleyebilme, görüntüleyebilme ve silebilme yeteneği.
